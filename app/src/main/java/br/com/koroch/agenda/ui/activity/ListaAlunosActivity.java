@@ -3,6 +3,7 @@ package br.com.koroch.agenda.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -11,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.Serializable;
+import java.util.List;
+
 import br.com.koroch.agenda.R;
 import br.com.koroch.agenda.dao.AlunoDAO;
+import br.com.koroch.agenda.model.Aluno;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AlunoDAO dao = new AlunoDAO();
         setTitle(TITULO_APPBAR);
         configuraFabNovoAluno();
+        dao.salva(new Aluno("Alex", "1122223333", "alex@alura.com.br"));
+        dao.salva(new Aluno("Fran", "1122223333", "fran@gmail.com"));
     }
 
     private void configuraFabNovoAluno() {
@@ -49,10 +56,20 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void configuraLista() {
+        final List<Aluno> alunos = dao.todos();
         ListView listaDeAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
         listaDeAlunos.setAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                dao.todos()));
+                alunos));
+        listaDeAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int posicao, long id) {
+                Aluno alunoEscolhido = alunos.get(posicao);
+                Intent vaiParaFormularioActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
+                vaiParaFormularioActivity.putExtra("aluno", alunoEscolhido);
+                startActivity(vaiParaFormularioActivity);
+            }
+        });
     }
 }

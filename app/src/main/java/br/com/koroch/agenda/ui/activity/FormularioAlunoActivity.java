@@ -2,6 +2,7 @@ package br.com.koroch.agenda.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +14,11 @@ import br.com.koroch.agenda.model.Aluno;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
 
-    public static final String TITULOAPPBAR = "Novo Aluno";
+    public static final String TITULOAPPBAR = "Novo aluno";
     private EditText campoNome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    final AlunoDAO dao = new AlunoDAO();
+    private final AlunoDAO dao = new AlunoDAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         setTitle(TITULOAPPBAR);
         inicializacaoDosCampos();
         configuraBotaoSalvar();
+
+        Intent dados = getIntent();
+        Aluno aluno = (Aluno) dados.getSerializableExtra("aluno");
+        campoNome.setText(aluno.getNome());
+        campoTelefone.setText(aluno.getTelefone());
+        campoEmail.setText(aluno.getEmail());
 
 //        ActiveFaceLiveness mActiveFaceLiveness = new ActiveFaceLiveness.Builder("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1ZjIzNDBhM2UxMjY5YjAwMDdlOTdmOGEifQ.pWN09KRGTPZdxHMHjjpgp-HvAvkyFmqkz6RRa7FX0T8")
 //                // veja a tabela abaixo
