@@ -37,7 +37,6 @@ public class ListaAlunosActivity extends AppCompatActivity implements IConstante
         configuraFabNovoAluno();
         configuraLista();
 
-
 //        ActiveFaceLiveness mActiveFaceLiveness = new ActiveFaceLiveness.Builder("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1ZjIzNDBhM2UxMjY5YjAwMDdlOTdmOGEifQ.pWN09KRGTPZdxHMHjjpgp-HvAvkyFmqkz6RRa7FX0T8")
 //                // veja a tabela abaixo
 //                .build();
