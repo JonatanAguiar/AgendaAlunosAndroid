@@ -1,21 +1,17 @@
 package br.com.koroch.agenda.ui.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.koroch.agenda.R;
 import br.com.koroch.agenda.dao.AlunoDAO;
 import br.com.koroch.agenda.model.Aluno;
-
-import static br.com.koroch.agenda.ui.activity.ListaAlunosActivity.CHAVE_ALUNO;
 
 public class FormularioAlunoActivity extends AppCompatActivity implements IConstantesActivities {
 
